@@ -95,3 +95,94 @@
 2025-09-08 15:02:36.544 | INFO     | __main__:<module>:121 - CSV processing complete.
 2025-09-08 15:04:21.959 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
 2025-09-08 15:04:21.960 | INFO     | __main__:<module>:119 - Starting CSV processing...
+2025-09-08 15:34:18.301 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:34:18.301 | INFO     | __main__:main:89 - Starting CSV fetch demonstration...
+2025-09-08 15:34:18.301 | INFO     | __main__:fetch_csv_file:48 - Fetching CSV data from https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/8e333cf52e9d49808e6e4e0caab5af8d/csv?layers=0...
+2025-09-08 15:34:22.436 | INFO     | __main__:write_csv_file:72 - Writing CSV data to braun_data\Football_Fields_8792193028106921212.csv...
+2025-09-08 15:34:22.436 | INFO     | __main__:write_csv_file:76 - SUCCESS: CSV data written to braun_data\Football_Fields_8792193028106921212.csv
+2025-09-08 15:34:22.436 | INFO     | __main__:fetch_csv_file:52 - SUCCESS: CSV file fetched and saved as Football_Fields_8792193028106921212.csv
+2025-09-08 15:34:27.741 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:34:27.741 | INFO     | __main__:main:89 - Starting Excel fetch demonstration...
+2025-09-08 15:34:27.741 | INFO     | __main__:fetch_excel_file:48 - Fetching Excel data from https://www.usitc.gov/sites/default/files/tata/hts/hts_2023_revision_11_xlsx.xlsx...
+2025-09-08 15:34:28.309 | INFO     | __main__:write_excel_file:72 - Writing Excel data to braun_data\2023 HTS Revision 11 xlsx.xlsx...
+2025-09-08 15:34:28.310 | INFO     | __main__:write_excel_file:76 - SUCCESS: Excel data written to braun_data\2023 HTS Revision 11 xlsx.xlsx
+2025-09-08 15:34:28.310 | INFO     | __main__:fetch_excel_file:52 - SUCCESS: Excel file fetched and saved as 2023 HTS Revision 11 xlsx.xlsx
+2025-09-08 15:34:33.600 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:34:33.600 | INFO     | __main__:main:90 - Starting JSON fetch demonstration...
+2025-09-08 15:34:33.600 | INFO     | __main__:fetch_json_file:49 - Fetching JSON data from https://data.nasa.gov/docs/legacy/meteorite_landings/Meteorite_Landings.json...
+2025-09-08 15:35:15.726 | ERROR    | __main__:fetch_json_file:57 - Request error occurred: HTTPSConnectionPool(host='data.nasa.gov', port=443): Max retries exceeded with url: /docs/legacy/meteorite_landings/Meteorite_Landings.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001840A902510>, 'Connection to data.nasa.gov timed out. (connect timeout=None)'))
+2025-09-08 15:35:21.028 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:35:21.028 | INFO     | __main__:main:89 - Starting text fetch demonstration...
+2025-09-08 15:35:21.028 | INFO     | __main__:fetch_txt_file:48 - Fetching text data from https://ndownloader.figshare.com/files/44334662...
+2025-09-08 15:35:22.147 | INFO     | __main__:write_txt_file:72 - Writing data to braun_data\readme_3.txt...
+2025-09-08 15:35:22.147 | INFO     | __main__:write_txt_file:76 - SUCCESS: Data written to braun_data\readme_3.txt
+2025-09-08 15:35:22.148 | INFO     | __main__:fetch_txt_file:52 - SUCCESS: Text file fetched and saved as readme_3.txt
+2025-09-08 15:35:27.367 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:35:27.367 | INFO     | __main__:<module>:120 - Starting CSV processing...
+2025-09-08 15:35:27.369 | INFO     | __main__:process_csv_file:111 - Processed CSV file: braun_data\Football_Fields_8792193028106921212.csv
+2025-09-08 15:35:27.369 | INFO     | __main__:process_csv_file:112 - Found 13 synthetic football fields out of 43 total
+2025-09-08 15:35:27.369 | INFO     | __main__:process_csv_file:113 - Results saved to CSV: braun_processed\synthetic_football_fields_in_seattle.csv
+2025-09-08 15:35:27.369 | INFO     | __main__:<module>:122 - CSV processing complete.
+2025-09-08 15:35:33.865 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:35:33.865 | INFO     | __main__:<module>:85 - Starting Excel processing...
+2025-09-08 15:35:36.452 | INFO     | __main__:process_excel_file:76 - Processed Excel file: braun_data\2023 HTS Revision 11 xlsx.xlsx
+2025-09-08 15:35:36.452 | INFO     | __main__:process_excel_file:77 - Found 5959 occurrences of 'Free' in column E
+2025-09-08 15:35:36.452 | INFO     | __main__:process_excel_file:78 - Results saved to: braun_processed\duty_free_count.txt
+2025-09-08 15:35:36.452 | INFO     | __main__:<module>:87 - Excel processing complete.
+2025-09-08 15:35:41.956 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:35:41.956 | INFO     | __main__:<module>:93 - Starting JSON processing...
+2025-09-08 15:35:41.956 | ERROR    | __main__:count_meteorite_hits:55 - Error reading or processing JSON file: [Errno 2] No such file or directory: 'braun_data\\Meteorite_Landings.json'
+2025-09-08 15:35:41.956 | INFO     | __main__:process_json_file:84 - Processed JSON file: braun_data\Meteorite_Landings.json
+2025-09-08 15:35:41.956 | INFO     | __main__:process_json_file:85 - Found 0 meteorite hits on Elephant Mountain
+2025-09-08 15:35:41.956 | INFO     | __main__:process_json_file:86 - Results saved to: braun_processed\metorite_hits_on_elephant_mountain.txt
+2025-09-08 15:35:41.957 | INFO     | __main__:<module>:95 - JSON processing complete.
+2025-09-08 15:35:47.169 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:35:47.169 | INFO     | __main__:<module>:74 - Starting text processing...
+2025-09-08 15:35:47.179 | INFO     | __main__:process_text_file:65 - Processed text file: braun_data\readme_3.txt
+2025-09-08 15:35:47.179 | INFO     | __main__:process_text_file:66 - Found 4,156 total words
+2025-09-08 15:35:47.179 | INFO     | __main__:process_text_file:67 - Results saved to: braun_processed\total_word_count.txt
+2025-09-08 15:35:47.179 | INFO     | __main__:<module>:76 - Text processing complete.
+2025-09-08 15:37:29.926 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:37:29.926 | INFO     | __main__:main:90 - Starting JSON fetch demonstration...
+2025-09-08 15:37:29.926 | INFO     | __main__:fetch_json_file:49 - Fetching JSON data from https://data.nasa.gov/docs/legacy/meteorite_landings/Meteorite_Landings.json...
+2025-09-08 15:37:32.581 | INFO     | __main__:write_json_file:73 - Writing JSON data to braun_data\Meteorite_Landings.json...
+2025-09-08 15:37:33.526 | INFO     | __main__:write_json_file:77 - SUCCESS: JSON data written to braun_data\Meteorite_Landings.json
+2025-09-08 15:37:33.542 | INFO     | __main__:fetch_json_file:53 - SUCCESS: JSON file fetched and saved as Meteorite_Landings.json
+2025-09-08 15:38:03.914 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:38:03.914 | INFO     | __main__:<module>:93 - Starting JSON processing...
+2025-09-08 15:38:03.914 | ERROR    | __main__:count_meteorite_hits:55 - Error reading or processing JSON file: [Errno 2] No such file or directory: 'braun_data\\Meteorite_Landings.json'
+2025-09-08 15:38:03.915 | INFO     | __main__:process_json_file:84 - Processed JSON file: braun_data\Meteorite_Landings.json
+2025-09-08 15:38:03.915 | INFO     | __main__:process_json_file:85 - Found 0 meteorite hits on Elephant Mountain
+2025-09-08 15:38:03.915 | INFO     | __main__:process_json_file:86 - Results saved to: braun_processed\metorite_hits_on_elephant_mountain.txt
+2025-09-08 15:38:03.915 | INFO     | __main__:<module>:95 - JSON processing complete.
+2025-09-08 15:38:39.793 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:38:39.793 | INFO     | __main__:main:90 - Starting JSON fetch demonstration...
+2025-09-08 15:38:39.794 | INFO     | __main__:fetch_json_file:49 - Fetching JSON data from https://data.nasa.gov/docs/legacy/meteorite_landings/Meteorite_Landings.json...
+2025-09-08 15:38:42.007 | INFO     | __main__:write_json_file:73 - Writing JSON data to braun_data\Meteorite_Landings.json...
+2025-09-08 15:38:42.926 | INFO     | __main__:write_json_file:77 - SUCCESS: JSON data written to braun_data\Meteorite_Landings.json
+2025-09-08 15:38:42.942 | INFO     | __main__:fetch_json_file:53 - SUCCESS: JSON file fetched and saved as Meteorite_Landings.json
+2025-09-08 15:38:53.817 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:38:53.818 | INFO     | __main__:<module>:93 - Starting JSON processing...
+2025-09-08 15:38:53.955 | INFO     | __main__:process_json_file:84 - Processed JSON file: braun_data\Meteorite_Landings.json
+2025-09-08 15:38:53.956 | INFO     | __main__:process_json_file:85 - Found 0 meteorite hits on Elephant Mountain
+2025-09-08 15:38:53.956 | INFO     | __main__:process_json_file:86 - Results saved to: braun_processed\metorite_hits_on_elephant_mountain.txt
+2025-09-08 15:38:53.956 | INFO     | __main__:<module>:95 - JSON processing complete.
+2025-09-08 15:43:05.002 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:43:05.003 | INFO     | __main__:<module>:93 - Starting JSON processing...
+2025-09-08 15:43:05.132 | INFO     | __main__:process_json_file:84 - Processed JSON file: braun_data\Meteorite_Landings.json
+2025-09-08 15:43:05.132 | INFO     | __main__:process_json_file:85 - Found 0 meteorite hits on Elephant Moraine
+2025-09-08 15:43:05.132 | INFO     | __main__:process_json_file:86 - Results saved to: braun_processed\metorite_hits_on_elephant_moraine.txt
+2025-09-08 15:43:05.133 | INFO     | __main__:<module>:95 - JSON processing complete.
+2025-09-08 15:45:13.560 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:45:13.560 | INFO     | __main__:<module>:77 - Starting JSON processing...
+2025-09-08 15:45:13.673 | WARNING  | __main__:count_total_meteorites:39 - JSON data is not in expected list format
+2025-09-08 15:45:13.691 | INFO     | __main__:process_json_file:68 - Processed JSON file: braun_data\Meteorite_Landings.json
+2025-09-08 15:45:13.691 | INFO     | __main__:process_json_file:69 - Found 0 total meteorite hits
+2025-09-08 15:45:13.691 | INFO     | __main__:process_json_file:70 - Results saved to: braun_processed\total_meteorite_hits.txt
+2025-09-08 15:45:13.691 | INFO     | __main__:<module>:79 - JSON processing complete.
+2025-09-08 15:47:00.262 | INFO     | utils_logger:<module>:41 - Logging to file: logs\project_log.log
+2025-09-08 15:47:00.262 | INFO     | __main__:<module>:83 - Starting JSON processing...
+2025-09-08 15:47:00.401 | INFO     | __main__:process_json_file:74 - Processed JSON file: braun_data\Meteorite_Landings.json
+2025-09-08 15:47:00.401 | INFO     | __main__:process_json_file:75 - Found 45,716 total meteorite hits
+2025-09-08 15:47:00.401 | INFO     | __main__:process_json_file:76 - Results saved to: braun_processed\total_meteorite_hits.txt
+2025-09-08 15:47:00.401 | INFO     | __main__:<module>:85 - JSON processing complete.

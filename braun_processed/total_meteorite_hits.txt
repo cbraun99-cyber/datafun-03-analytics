@@ -1,0 +1,5 @@
+Total Meteorite Hits Analysis
+==============================
+
+Data source: NASA Meteorite Landings
+Total number of meteorite hits: 45,716

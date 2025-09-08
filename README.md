@@ -40,11 +40,11 @@ Counts and lists the number of synthetic football fields in Seattle, WA \
 to run py .\braun_process_csv.py \
 
 braun_process_excel.py \
-Counts and lists the number of Duty Free products \
+Counts the number of Duty Free products \
 to run py .\braun_process_excel.py \
 
 braun_process_json.py \
-Counts the number of meteorite hits on Elephant Mountain \
+Counts the number of meteorite hits \
 to run py .\braun_process_json.py \
 
 braun_process_text.py \
