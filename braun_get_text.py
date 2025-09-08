@@ -79,7 +79,7 @@ def write_txt_file(folder_name: str, filename: str, string_data: str) -> None:
     try:
         logger.info(f"Writing data to {file_path}...")
         file_path.parent.mkdir(parents=True, exist_ok=True)
-        with file_path.open('w') as file:
+        with file_path.open('w', encoding='utf-8') as file:
             file.write(string_data)
         logger.info(f"SUCCESS: Data written to {file_path}")
     except IOError as io_err:
