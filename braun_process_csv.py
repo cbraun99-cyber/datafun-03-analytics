@@ -5,7 +5,6 @@
 # Import from Python Standard Library
 import pathlib
 import csv
-import statistics
 import sys
 
 # Ensure project root is in sys.path for local imports
@@ -18,7 +17,6 @@ from utils_logger import logger
 # Declare Global Variables
 #####################################
 
-# TODO: Replace with the names of your folders
 FETCHED_DATA_DIR: str = "braun_data"
 PROCESSED_DIR: str = "braun_processed"
 
@@ -26,64 +24,93 @@ PROCESSED_DIR: str = "braun_processed"
 # Define Functions
 #####################################
 
-# TODO: Add or replace this with a function that reads and processes your CSV file
-
-def analyze_ladder_score(file_path: pathlib.Path) -> dict:
-    """Analyze the Ladder score column to calculate min, max, mean, and stdev."""
+def count_synthetic_fields(file_path: pathlib.Path) -> dict:
+    """Count how many synthetic football fields there are in the dataset."""
     try:
-        # initialize an empty list to store the scores
-        score_list = []
-        with file_path.open('r') as file:
-            # csv.DictReader() methods to read into a DictReader so we can access named columns in the csv file
+        synthetic_count = 0
+        field_list = []  # Store details of synthetic fields
+        
+        with file_path.open('r', encoding='utf-8') as file:
             dict_reader = csv.DictReader(file)  
+            
+            # Check if required columns exist
+            if 'Surface' not in dict_reader.fieldnames or 'NAME' not in dict_reader.fieldnames:
+                logger.error("CSV file missing required columns 'Surface' or 'NAME'")
+                return {"synthetic_count": 0, "total_fields_processed": 0, "synthetic_fields": []}
+            
             for row in dict_reader:
                 try:
-                    score = float(row["Ladder score"])  # Extract and convert to float
-                    # append the score to the list
-                    score_list.append(score)
-                except ValueError as e:
+                    surface = row.get("Surface", "").strip().lower()
+                    name = row.get("NAME", "Unknown").strip()
+                    
+                    # Check for synthetic surface types
+                    if any(keyword in surface for keyword in ["synthetic", "turf", "artificial"]):
+                        synthetic_count += 1
+                        field_list.append({
+                            "name": name,
+                            "surface": surface
+                        })
+                        
+                except Exception as e:
                     logger.warning(f"Skipping invalid row: {row} ({e})")
         
-        # Calculate statistics
-        stats = {
-            "min": min(score_list),
-            "max": max(score_list),
-            "mean": statistics.mean(score_list),
-            "stdev": statistics.stdev(score_list) if len(score_list) > 1 else 0,
+        results = {
+            "synthetic_count": synthetic_count,
+            "total_fields_processed": dict_reader.line_num - 1,  # Subtract header row
+            "synthetic_fields": field_list
         }
-        return stats
+        return results
+        
     except Exception as e:
         logger.error(f"Error processing CSV file: {e}")
-        return {}
+        return {"synthetic_count": 0, "total_fields_processed": 0, "synthetic_fields": []}
 
 def process_csv_file():
-    """Read a CSV file, analyze Ladder score, and save the results."""
+    """Read the football fields CSV and count synthetic fields."""
     
-    # TODO: Replace with path to your CSV data file
-    input_file = pathlib.Path(FETCHED_DATA_DIR, "failed_banklist.csv")
+    # Path to your CSV data file
+    input_file = pathlib.Path(FETCHED_DATA_DIR, "Football_Fields_8792193028106921212.csv")
     
-    # TODO: Replace with path to your CSV processed file
-    output_file = pathlib.Path(PROCESSED_DIR, "happiness_ladder_score_stats.txt")
+    # Path to your output CSV file
+    output_file = pathlib.Path(PROCESSED_DIR, "synthetic_football_fields_in_seattle.csv")
     
-    # TODO: Call your new function to process YOUR CSV file
-    # TODO: Create a new local variable to store the result of the function call
-    stats = analyze_ladder_score(input_file)
+    # Call the function to count synthetic fields
+    results = count_synthetic_fields(input_file)
 
     # Create the output directory if it doesn't exist
     output_file.parent.mkdir(parents=True, exist_ok=True)
     
-    # Open the output file in write mode and write the results
-    with output_file.open('w') as file:
-
-        # TODO: Update the output to describe your results
-        file.write("Ladder Score Statistics:\n")
-        file.write(f"Minimum: {stats['min']:.2f}\n")
-        file.write(f"Maximum: {stats['max']:.2f}\n")
-        file.write(f"Mean: {stats['mean']:.2f}\n")
-        file.write(f"Standard Deviation: {stats['stdev']:.2f}\n")
+    # Open the output file in write mode and write the results as CSV
+    with output_file.open('w', encoding='utf-8', newline='') as file:
+        writer = csv.writer(file)
+        
+        # Write summary header
+        writer.writerow(["Synthetic Football Fields in Seattle - Analysis Summary"])
+        writer.writerow([])
+        
+        # Write summary statistics
+        writer.writerow(["Total football fields processed", results['total_fields_processed']])
+        writer.writerow(["Number of synthetic fields", results['synthetic_count']])
+        writer.writerow(["Percentage synthetic", f"{(results['synthetic_count']/results['total_fields_processed']*100):.1f}%"])
+        writer.writerow([])
+        
+        # Write detailed list header
+        writer.writerow(["Detailed List of Synthetic Football Fields"])
+        writer.writerow([])
+        writer.writerow(["Number", "Field Name (from NAME column)", "Surface Type"])
+        writer.writerow([])
+        
+        # Write each synthetic field as a row
+        if results['synthetic_fields']:
+            for i, field in enumerate(results['synthetic_fields'], 1):
+                writer.writerow([i, field['name'], field['surface']])
+        else:
+            writer.writerow(["No synthetic football fields found"])
     
     # Log the processing of the CSV file
-    logger.info(f"Processed CSV file: {input_file}, Statistics saved to: {output_file}")
+    logger.info(f"Processed CSV file: {input_file}")
+    logger.info(f"Found {results['synthetic_count']} synthetic football fields out of {results['total_fields_processed']} total")
+    logger.info(f"Results saved to CSV: {output_file}")
 
 #####################################
 # Main Execution
