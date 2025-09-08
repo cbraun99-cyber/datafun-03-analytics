@@ -1,25 +1,3 @@
-"""
-Process a JSON file to count astronauts by spacecraft and save the result.
-
-JSON file is in the format where people is a list of dictionaries with keys "craft" and "name".
-
-{
-    "people": [
-        {
-            "craft": "ISS",
-            "name": "Oleg Kononenko"
-        },
-        {
-            "craft": "ISS",
-            "name": "Nikolai Chub"
-        }
-    ],
-    "number": 2,
-    "message": "success"
-}
-
-"""
-
 #####################################
 # Import Modules
 #####################################
@@ -40,8 +18,8 @@ from utils_logger import logger
 #####################################
 
 # TODO: Replace with the names of your folders
-FETCHED_DATA_DIR: str = "example_data"
-PROCESSED_DIR: str = "example_processed"
+FETCHED_DATA_DIR: str = "braun_data"
+PROCESSED_DIR: str = "braun_processed"
 
 #####################################
 # Define Functions

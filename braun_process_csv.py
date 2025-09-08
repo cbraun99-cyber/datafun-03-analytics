@@ -1,7 +1,3 @@
-"""
-Process a CSV file on 2020 Happiness ratings by country to analyze the `Ladder score` column and save statistics.
-"""
-
 #####################################
 # Import Modules
 #####################################
@@ -23,8 +19,8 @@ from utils_logger import logger
 #####################################
 
 # TODO: Replace with the names of your folders
-FETCHED_DATA_DIR: str = "example_data"
-PROCESSED_DIR: str = "example_processed"
+FETCHED_DATA_DIR: str = "braun_data"
+PROCESSED_DIR: str = "braun_processed"
 
 #####################################
 # Define Functions
@@ -64,7 +60,7 @@ def process_csv_file():
     """Read a CSV file, analyze Ladder score, and save the results."""
     
     # TODO: Replace with path to your CSV data file
-    input_file = pathlib.Path(FETCHED_DATA_DIR, "2020_happiness.csv")
+    input_file = pathlib.Path(FETCHED_DATA_DIR, "failed_banklist.csv")
     
     # TODO: Replace with path to your CSV processed file
     output_file = pathlib.Path(PROCESSED_DIR, "happiness_ladder_score_stats.txt")

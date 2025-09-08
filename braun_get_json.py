@@ -1,11 +1,3 @@
-"""
-This example file fetches JSON data of astronauts currently in space 
-from the web and saves it to a local file named example_data/astronauts.json.
-
-TODO: Save a copy of the provided utils_logger.py file 
-in the same folder as this file.
-"""
-
 #####################################
 # Import Modules at the Top
 #####################################
@@ -28,7 +20,7 @@ from utils_logger import logger
 # Declare Global Variables
 #####################################
 
-FETCHED_DATA_DIR = "example_data"
+FETCHED_DATA_DIR = "braun_data"
 
 #####################################
 # Define Functions
