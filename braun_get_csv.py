@@ -85,9 +85,9 @@ def main():
     """
     Main function to demonstrate fetching CSV data.
     """
-    csv_url = 'https://www.fdic.gov/bank/individual/failed/banklist.csv'
+    csv_url = 'https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/8e333cf52e9d49808e6e4e0caab5af8d/csv?layers=0'
     logger.info("Starting CSV fetch demonstration...")
-    fetch_csv_file(FETCHED_DATA_DIR, "failed_banklist.csv", csv_url)
+    fetch_csv_file(FETCHED_DATA_DIR, "Football_Fields_8792193028106921212.csv", csv_url)
 
 #####################################
 # Conditional Execution
