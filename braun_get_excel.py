@@ -93,9 +93,9 @@ def main():
     """
     Main function to demonstrate fetching Excel data.
     """
-    excel_url = 'https://studentaid.gov/sites/default/files/fsawg/datacenter/library/DL_Dashboard_AY2014_2015_Q1.xls'
+    excel_url = 'https://www.usitc.gov/sites/default/files/tata/hts/hts_2023_revision_11_xlsx.xlsx'
     logger.info("Starting Excel fetch demonstration...")
-    fetch_excel_file(FETCHED_DATA_DIR, "DL_Dashboard_AY2014_2015_Q1", excel_url)
+    fetch_excel_file(FETCHED_DATA_DIR, "2023 HTS Revision 11 xlsx.xlsx", excel_url)
 
 #####################################
 # Conditional Execution
