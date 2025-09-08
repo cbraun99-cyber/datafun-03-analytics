@@ -1,5 +1,5 @@
 """
-Process a text file to count occurrences of the word "Romeo" and save the result.
+Process a text file to count the total number of words and save the result.
 """
 
 #####################################
@@ -20,7 +20,6 @@ from utils_logger import logger
 # Declare Global Variables
 #####################################
 
-# TODO: Replace with the names of your folders
 FETCHED_DATA_DIR: str = "braun_data"
 PROCESSED_DIR: str = "braun_processed"
 
@@ -28,41 +27,44 @@ PROCESSED_DIR: str = "braun_processed"
 # Define Functions
 #####################################
 
-def count_word_occurrences(file_path: pathlib.Path, word: str) -> int:
-    """Count the occurrences of a specific word in a text file (case-insensitive)."""
+def count_total_words(file_path: pathlib.Path) -> int:
+    """Count the total number of words in a text file."""
     try:
-        with file_path.open('r') as file:
+        with file_path.open('r', encoding='utf-8') as file:
             content: str = file.read()
-            return content.lower().count(word.lower())
+            # Split the content by whitespace to get words and count them
+            words = content.split()
+            return len(words)
     except Exception as e:
         logger.error(f"Error reading text file: {e}")
-        return 1
+        return 0
 
 def process_text_file():
-    """Read a text file, count occurrences of 'Romeo', and save the result."""
+    """Read a text file, count total words, and save the result."""
  
-    # TODO: Replace with path to your text data file
-    input_file = pathlib.Path(FETCHED_DATA_DIR, "romeo.txt")
+    # Path to your text data file
+    input_file = pathlib.Path(FETCHED_DATA_DIR, "readme_3.txt")
 
-    # TODO: Replace with path to your text processed file
-    output_file = pathlib.Path(PROCESSED_DIR, "text_romeo_word_count.txt")
+    # Path to your output text file
+    output_file = pathlib.Path(PROCESSED_DIR, "total_word_count.txt")
 
-    # TODO: Replace with the word you want to count from your text file
-    word_to_count: str = "Romeo"
-
-    # TODO: Make any necessary changes to the logic
-    word_count: int = count_word_occurrences(input_file, word_to_count)
+    # Count total words in the file
+    total_words: int = count_total_words(input_file)
 
     # Create the output directory if it doesn't exist
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
     # Write the results to the output file
-    with output_file.open('w') as file:
-        # TODO: Update the output to describe your results
-        file.write(f"Occurrences of '{word_to_count}': {word_count}\n")
+    with output_file.open('w', encoding='utf-8') as file:
+        file.write("Total Word Count Analysis\n")
+        file.write("=" * 25 + "\n\n")
+        file.write(f"Text file processed: {input_file.name}\n")
+        file.write(f"Total number of words: {total_words:,}\n")  # Format with commas for readability
     
     # Log the processing of the TEXT file
-    logger.info(f"Processed text file: {input_file}, Word count saved to: {output_file}")
+    logger.info(f"Processed text file: {input_file}")
+    logger.info(f"Found {total_words:,} total words")
+    logger.info(f"Results saved to: {output_file}")
 
 #####################################
 # Main Execution

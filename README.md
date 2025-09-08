@@ -38,9 +38,11 @@ Counts and lists the number of Duty Free products \
 to run py .\braun_process_excel.py \
 
 braun_process_json.py \
+Counts the number of meteorite hits on Elephant Mountain \
 to run py .\braun_process_json.py \
 
 braun_process_text.py \
+Counts the number of total words in the text file \
 to run py .\braun_process_text.py \
 
 Requirements \
