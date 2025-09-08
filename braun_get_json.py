@@ -94,9 +94,9 @@ def main():
     """
     Main function to demonstrate fetching JSON data.
     """
-    json_url = 'http://api.open-notify.org/astros.json'
+    json_url = 'https://data.nasa.gov/docs/legacy/meteorite_landings/Meteorite_Landings.json'
     logger.info("Starting JSON fetch demonstration...")
-    fetch_json_file(FETCHED_DATA_DIR, "astros.json", json_url)
+    fetch_json_file(FETCHED_DATA_DIR, "Meteorite_Landings.json", json_url)
 
 #####################################
 # Conditional Execution
