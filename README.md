@@ -13,6 +13,12 @@ This project automates the setup of multiple folder structures for organizing da
 
 Features \
 
+braun_main_processor.py \
+Runs all 8 processes in a controlled fashion
+to run py .\braun_main_processor.py \
+
+To run files individually: \
+
 braun_get_csv.py \
 Fetches Football_Fields_8792193028106921212.csv from https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/8e333cf52e9d49808e6e4e0caab5af8d/csv?layers=0 \
 to run py .\braun_get_csv.py \
