@@ -17,7 +17,6 @@ from utils_logger import logger
 # Declare Global Variables
 #####################################
 
-# TODO: Replace with the names of your folders
 FETCHED_DATA_DIR: str = "braun_data"
 PROCESSED_DIR: str = "braun_processed"
 
@@ -25,68 +24,66 @@ PROCESSED_DIR: str = "braun_processed"
 # Define Functions
 #####################################
 
-# TODO: Add or replace this with a function that reads and processes your JSON file
-
-def count_astronauts_by_craft(file_path: pathlib.Path) -> dict:
-    """Count the number of astronauts on each spacecraft from a JSON file."""
+def count_meteorite_hits(file_path: pathlib.Path, target_location: str) -> int:
+    """Count the number of meteorite hits on a specific location."""
     try:
         # Open the JSON file using the file_path passed in as an argument
-        with file_path.open('r') as file:
+        with file_path.open('r', encoding='utf-8') as file:
+            # Load the JSON data
+            meteorite_data = json.load(file)  
 
-            # Use the json module load() function 
-            # to read data file into a Python dictionary
-            astronaut_dictionary = json.load(file)  
+            # Initialize counter
+            hit_count = 0
 
-            # initialize an empty dictionary to store the counts
-            craft_counts_dictionary = {}
-
-            # people is a list of dictionaries in the JSON file
-            # We can get it using the get() method and pass in the key "people"
-            people_list: list = astronaut_dictionary.get("people", [])
-
-            # For each person in the list, get the craft and count them
-            for person_dictionary in people_list:  
-
-                # Get the craft from the person dictionary
-                # If the key "craft" is not found, default to "Unknown"
-                craft = person_dictionary.get("craft", "Unknown")
-
-                # Update the craft counts dictionary for that craft
-                # If the craft is not in the dictionary, initialize it to 0
-                # Add 1 to the count for the current craft
-                craft_counts_dictionary[craft] = craft_counts_dictionary.get(craft, 0) + 1
-
-            # Return the dictionary with counts of astronauts by spacecraft    
-            return craft_counts_dictionary
+            # Check if the data is a list of meteorites
+            if isinstance(meteorite_data, list):
+                for meteorite in meteorite_data:
+                    try:
+                        # Get the location from the meteorite data
+                        location = meteorite.get("location", "").strip()
+                        
+                        # Check for Elephant Mountain hits (case-insensitive)
+                        if target_location.lower() in location.lower():
+                            hit_count += 1
+                            
+                    except Exception as e:
+                        logger.warning(f"Skipping invalid meteorite entry: {meteorite} ({e})")
+            
+            return hit_count
+            
     except Exception as e:
         logger.error(f"Error reading or processing JSON file: {e}")
-        return {} # return an empty dictionary in case of error
+        return 0
 
 def process_json_file():
-    """Read a JSON file, count astronauts by spacecraft, and save the result."""
+    """Read a JSON file and count meteorite hits on Elephant Mountain."""
 
-    # TODO: Replace with path to your JSON data file
-    input_file: pathlib.Path = pathlib.Path(FETCHED_DATA_DIR, "astros.json")
+    # Path to your JSON data file
+    input_file: pathlib.Path = pathlib.Path(FETCHED_DATA_DIR, "Meteorite_Landings.json")
 
-    # TODO: Replace with path to your JSON processed file
-    output_file: pathlib.Path = pathlib.Path(PROCESSED_DIR, "json_astronauts_by_craft.txt")
+    # Path to your output text file
+    output_file: pathlib.Path = pathlib.Path(PROCESSED_DIR, "metorite_hits_on_elephant_mountain.txt")
     
-    # TODO: Call your new function to process YOUR JSON file
-    # TODO: Create a new local variable to store the result of the function call
-    craft_counts = count_astronauts_by_craft(input_file)
+    # Target location to search for
+    target_location = "Elephant Mountain"
+    
+    # Count the meteorite hits
+    hit_count = count_meteorite_hits(input_file, target_location)
 
     # Create the output directory if it doesn't exist
     output_file.parent.mkdir(parents=True, exist_ok=True)
     
     # Open the output file in write mode and write the results
-    with output_file.open('w') as file:
-        # TODO: Update the output to describe your results
-        file.write("Astronauts by spacecraft:\n")
-        for craft, count in craft_counts.items():
-            file.write(f"{craft}: {count}\n")
+    with output_file.open('w', encoding='utf-8') as file:
+        file.write("Meteorite Hit Count Analysis\n")
+        file.write("=" * 30 + "\n\n")
+        file.write(f"Target location: {target_location}\n")
+        file.write(f"Number of meteorite hits: {hit_count}\n")
     
     # Log the processing of the JSON file
-    logger.info(f"Processed JSON file: {input_file}, Results saved to: {output_file}")
+    logger.info(f"Processed JSON file: {input_file}")
+    logger.info(f"Found {hit_count} meteorite hits on {target_location}")
+    logger.info(f"Results saved to: {output_file}")
 
 #####################################
 # Main Execution
