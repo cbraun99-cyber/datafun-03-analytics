@@ -14,7 +14,7 @@ This project automates the setup of multiple folder structures for organizing da
 Features \
 
 braun_get_csv.py \
-Fetches failed_banklist.csv from https://www.fdic.gov/bank/individual/failed/banklist.csv \
+Fetches Football_Fields_8792193028106921212.csv from https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/8e333cf52e9d49808e6e4e0caab5af8d/csv?layers=0 \
 to run py .\braun_get_csv.py \
 
 braun_get_excel.py \
@@ -30,9 +30,11 @@ Fetches readme_3.txt from https://ndownloader.figshare.com/files/44334662 \
 to run py .\braun_get_text.py \
 
 braun_process_csv.py \
+Counts and lists the number of synthetic football fields in Seattle, WA \
 to run py .\braun_process_csv.py \
 
 braun_process_excel.py \
+Counts and lists the number of Duty Free products \
 to run py .\braun_process_excel.py \
 
 braun_process_json.py \

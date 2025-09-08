@@ -19,7 +19,6 @@ from utils_logger import logger
 # Declare Global Variables
 #####################################
 
-# TODO: Replace with the names of your folders
 FETCHED_DATA_DIR: str = "braun_data"
 PROCESSED_DIR: str = "braun_processed"
 
@@ -35,40 +34,48 @@ def count_word_in_column(file_path: pathlib.Path, column_letter: str, word: str)
         count = 0
         for cell in sheet[column_letter]:
             if cell.value and isinstance(cell.value, str):
-                count += cell.value.lower().count(word.lower())
+                # Count exact matches of the word (case-insensitive)
+                if cell.value.strip().lower() == word.lower():
+                    count += 1
         return count
     except Exception as e:
         logger.error(f"Error reading Excel file: {e}")
         return 0
 
 def process_excel_file():
-    """Read an Excel file, count occurrences of 'GitHub' in a specific column, and save the result."""
+    """Read an Excel file, count occurrences of 'Free' in column E, and save the result."""
     
-    # TODO: Replace with path to your Excel data file
-    input_file = pathlib.Path(FETCHED_DATA_DIR, "Feedback.xlsx")
+    # Path to your Excel data file
+    input_file = pathlib.Path(FETCHED_DATA_DIR, "2023 HTS Revision 11 xlsx.xlsx")
 
-    # TODO: Replace with path to your Excel processed file
-    output_file = pathlib.Path(PROCESSED_DIR, "excel_feedback_github_count.txt")
+    # Path to your output text file
+    output_file = pathlib.Path(PROCESSED_DIR, "duty_free_count.txt")
 
-    # TODO: Replace with the appropriate column letter for your Excel data file
-    column_to_check = "A"  
+    # Column to check for "Free" occurrences (Column E - General Rate of Duty)
+    column_to_check = "E"
 
-    # TODO: Replace with the word you want to count from your Excel file
-    word_to_count = "GitHub"
+    # Word to count in the Excel file
+    word_to_count = "Free"
 
     # Call the function to count occurrences of the word in the specified column
-    word_count = count_word_in_column(input_file, column_to_check, word_to_count)
+    free_count = count_word_in_column(input_file, column_to_check, word_to_count)
     
-    # Write the results to the output file    
+    # Create the output directory if it doesn't exist
     output_file.parent.mkdir(parents=True, exist_ok=True)
     
     # Open the output file in write mode and write the results
-    with output_file.open('w') as file:
-        # TODO: Update the output to describe your results
-        file.write(f"Occurrences of '{word_to_count}' in column {column_to_check}: {word_count}\n")
+    with output_file.open('w', encoding='utf-8') as file:
+        file.write("Duty Free Occurrence Analysis\n")
+        file.write("=" * 30 + "\n\n")
+        file.write(f"Excel file processed: {input_file.name}\n")
+        file.write(f"Column analyzed: {column_to_check} (General Rate of Duty)\n")
+        file.write(f"Search term: '{word_to_count}' (exact match)\n")
+        file.write(f"Number of occurrences: {free_count}\n")
     
     # Log the processing of the Excel file    
-    logger.info(f"Processed Excel file: {input_file}, Word count saved to: {output_file}")
+    logger.info(f"Processed Excel file: {input_file}")
+    logger.info(f"Found {free_count} occurrences of '{word_to_count}' in column {column_to_check}")
+    logger.info(f"Results saved to: {output_file}")
 
 #####################################
 # Main Execution
