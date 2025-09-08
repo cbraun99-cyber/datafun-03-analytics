@@ -1,5 +1,0 @@
-Total Word Count Analysis
-=========================
-
-Text file processed: readme_3.txt
-Total number of words: 4,156

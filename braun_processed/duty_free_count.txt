@@ -1,7 +1,0 @@
-Duty Free Occurrence Analysis
-==============================
-
-Excel file processed: 2023 HTS Revision 11 xlsx.xlsx
-Column analyzed: E (General Rate of Duty)
-Search term: 'Free' (exact match)
-Number of occurrences: 5959
